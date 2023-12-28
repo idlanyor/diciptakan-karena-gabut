@@ -1,0 +1,3 @@
+echo Membuka Direktori Kerja ...
+cls
+cd /d c:\xampp\htdocs\backend
