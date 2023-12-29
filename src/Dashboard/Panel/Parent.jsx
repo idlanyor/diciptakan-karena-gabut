@@ -6,6 +6,7 @@ import ENDPOINT_PPDB from "../../constants";
 import NavbarPanel from "./Navbar";
 import SidebarPanel from "./Sidebar";
 import { delTokenPanel, getTokenPanel } from "../../Components/Reusable";
+import { useSwipeable } from "react-swipeable";
 export default function DashboardPanel() {
     const token = getTokenPanel()
     const navigasi = useNavigate();
@@ -82,9 +83,16 @@ export default function DashboardPanel() {
     const handleToggleDrawer = () => {
         setDrawerOpen(!isDrawerOpen);
     };
+    const handleSwipe = useSwipeable({
+        onSwipedLeft: (eventData) => {
+            if (eventData.dir === 'Left') {
+                setDrawerOpen(false)
+            }
+        }
+    })
     return (<>
         <NavbarPanel toggleDrawer={handleToggleDrawer} />
-        <SidebarPanel isDrawerOpen={isDrawerOpen} logoutHandler={logoutHandler} />
+        <SidebarPanel isDrawerOpen={isDrawerOpen} handleSwipe={handleSwipe} logoutHandler={logoutHandler} />
         <div className="antialiased max-h-full">
             <main className="p-4 md:ml-64 pt-20 ">
                 <Outlet />

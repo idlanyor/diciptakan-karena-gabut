@@ -16,7 +16,7 @@ const FileUploadField = ({ label, id, setter, state }) => {
             <label className="block ml-2 mb-2 text-lg mt-5 font-bold text-gray-900 dark:text-white">{label}</label>
             <input
                 onChange={handleFileChange}
-                className="block w-full text-lg text-gray-900 border border-gray-300 cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                className="block w-full text-lg text-gray-900 border border-gray-300 cursor-pointer bg-gray-50 dark:text-white focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                 id={id}
                 type="file"
                 accept="image/*"

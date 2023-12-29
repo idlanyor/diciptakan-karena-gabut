@@ -5,6 +5,7 @@ import NavbarPendaftar from "./Navbar";
 import letSwall from "../../Components/Sweetalert";
 import { Outlet, useNavigate } from "react-router-dom";
 import ENDPOINT_PPDB from "../../constants";
+import { useSwipeable } from "react-swipeable";
 import { delTokenPendaftar, getTokenPendaftar } from "../../Components/Reusable";
 export default function DashboardPendaftar() {
     const token = getTokenPendaftar()
@@ -75,10 +76,22 @@ export default function DashboardPendaftar() {
     const handleToggleDrawer = () => {
         setDrawerOpen(!isDrawerOpen);
     };
+    const handleSwipe = useSwipeable({
+        onSwiping: (eventData) => {
+            if (eventData.dir === 'Left') {
+                setDrawerOpen(false)
+            }
+        }
+    })
+    const handleTouch = useSwipeable({
+        onTouchStartOrOnMouseDown: () => {
+            setDrawerOpen(false)
+        }
+    })
     return (<>
         <NavbarPendaftar toggleDrawer={handleToggleDrawer} />
-        <SidebarPendaftar isDrawerOpen={isDrawerOpen} logoutHandler={logoutHandler} />
-        <div className="antialiased max-h-full">
+        <SidebarPendaftar isDrawerOpen={isDrawerOpen} handleSwipe={handleSwipe} logoutHandler={logoutHandler} />
+        <div {...handleSwipe} {...handleTouch} className="antialiased max-h-full">
             <main className="px-4 md:ml-64 pt-20 pb-5">
                 <Outlet />
             </main>

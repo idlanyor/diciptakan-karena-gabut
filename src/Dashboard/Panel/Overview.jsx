@@ -8,7 +8,7 @@ export const Overview = () => {
                 <Link key={index} to={d.link} className="relative mt-5">
                     <div className="flex flex-col items-center bg-white border border-gray-200 shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-700 dark:hover:bg-gray-700 relative z-10">
                         <div className="p-4 leading-normal text-center">
-                            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                            <p className="mb-3 font-normal text-gray-700 dark:text-white">
                                 {d.data}
                             </p>
                         </div>

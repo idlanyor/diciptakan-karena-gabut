@@ -39,7 +39,7 @@ export default function Registrasi() {
                     showConfirmButton: false,
                     showCloseButton: false,
                 }).then(() => {
-                    navigasi('login')
+                    navigasi('/login')
                 });
             }).catch((e) => {
                 // console.log(e.response?.data)
@@ -131,8 +131,8 @@ export default function Registrasi() {
                                 <option value={4}>Migrasi Orang tua</option>
                             </select>
                         </div>
-                        <button type="submit" className="w-full text-white bg-purple-600 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium  text-sm px-5 py-2.5 text-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">Sign in</button>
-                        <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                        <button type="submit" className="w-full text-white bg-purple-600 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium  text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">Sign in</button>
+                        <p className="text-sm font-light text-gray-500 dark:text-white">
                             Sudah punya akun? <Link to={'/login'} className="font-medium text-purple-600 hover:underline dark:text-purple-500">Login Sekarang</Link>
                         </p>
                     </form>

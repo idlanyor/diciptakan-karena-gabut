@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 import { format, parseISO } from "date-fns";
 import { id } from "date-fns/locale";
@@ -72,7 +73,7 @@ const InformasiUmumPendaftar = () => {
             }
         };
         getStatusText();
-    }, [user.status]);
+    }, []);
     const [proses, setProses] = useState();
     useEffect(() => {
         const fetchData = async () => {
@@ -90,15 +91,15 @@ const InformasiUmumPendaftar = () => {
             setLoading(false)
         };
         fetchData();
-    }, [proses]);
+    }, []);
     return (<>
         <div className="block p-6 bg-white border border-gray-200  shadow  dark:bg-gray-800 dark:border-gray-700 ">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Selamat datang <Link to="/dashboard/akun" className="text-blue-500 hover:underline">{user.nama_lengkap}</Link></h5>
-            <p className="text-gray-700 dark:text-gray-400 font-bold">Informasi Pendaftaran</p>
-            <p className="font-normal text-gray-700 dark:text-gray-400">Tanggal Mendaftar : {tglDaftar}</p>
-            <p className="font-normal text-gray-700 dark:text-gray-400">Gelombang /Jalur Pendaftaran : {user.gelombang + ' / ' + user.jalur_pendaftaran}</p>
-            <p className="font-normal text-gray-700 dark:text-gray-400">Status Pendaftaran : {statusText}</p>
-            <p className="font-normal text-gray-700 dark:text-gray-400">Tanggal Diterima : {tglDiterima}</p>
+            <p className="text-gray-700 dark:text-white font-bold">Informasi Pendaftaran</p>
+            <p className="font-normal text-gray-700 dark:text-white">Tanggal Mendaftar : {tglDaftar}</p>
+            <p className="font-normal text-gray-700 dark:text-white">Gelombang /Jalur Pendaftaran : {user.gelombang + ' / ' + user.jalur_pendaftaran}</p>
+            <p className="font-normal text-gray-700 dark:text-white">Status Pendaftaran : {statusText}</p>
+            <p className="font-normal text-gray-700 dark:text-white">Tanggal Diterima : {tglDiterima}</p>
         </div>
         <div className="block p-6 mt-4 bg-white border border-gray-200  shadow  dark:bg-gray-800 dark:border-gray-700 ">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Proses Pendaftaran Online</h5>
@@ -125,8 +126,8 @@ const InformasiUmumPendaftar = () => {
                         </>
                     ) : (
 
-                        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-white">
+                            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-white">
                                 <tr>
                                     <th scope="col" className="px-6 py-3 w-2">
                                         No

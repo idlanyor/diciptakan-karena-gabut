@@ -19,6 +19,7 @@ import Navbar from './Pages/Navbar';
 import JadwalPendaftaran from './Pages/JadwalPendaftaran';
 import Pengumuman from './Pages/Pengumuman';
 import RincianBiaya from './Pages/RincianBiaya';
+import PengumumanPendaftar from './Dashboard/Pendaftar/Pengumuman';
 export default function Router() {
     return (<Routes>
       <Route path='*' Component={NotFound}/>
@@ -44,6 +45,8 @@ export default function Router() {
         <Route path='biodata' Component={Biodata}/>
         <Route path='upload' Component={UploadFilePendaftar}/>
         <Route path='akun' Component={AkunPendaftar}/>
+        <Route path='pengumuman' Component={PengumumanPendaftar}/>
+        <Route path='cetak' Component={AkunPendaftar}/>
       </Route>
     </Routes>);
 }

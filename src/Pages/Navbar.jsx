@@ -1,9 +1,16 @@
 import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
+import { useSwipeable } from "react-swipeable";
+
 const Navbar = () => {
     const [isMobileNav, setIsMobileNav] = useState(false);
+    const handleSwipe = useSwipeable({
+        onTouchStartOrOnMouseDown: () => {
+            setIsMobileNav(false)
+        },
+    })
     return (
-        <>
+        <div >
             <nav className="bg-white dark:bg-gray-900 sticky w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <a href="https://flowbite.com/" className="flex items-center space-x-3 rtl:space-x-reverse">
@@ -11,8 +18,8 @@ const Navbar = () => {
                         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">PPDB</span>
                     </a>
                     <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                        <Link to={'/registrasi'} className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium  text-sm px-4 py-2 text-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">Mendaftar</Link>
-                        <button onClick={() => setIsMobileNav(!isMobileNav)} data-collapse-toggle="navbar-sticky" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500  md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded={isMobileNav}>
+                        <Link to={'/registrasi'} className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium  text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">Mendaftar</Link>
+                        <button onClick={() => setIsMobileNav(!isMobileNav)} data-collapse-toggle="navbar-sticky" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500  md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded={isMobileNav}>
                             <span className="sr-only">Open main menu</span>
                             <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
                                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
@@ -37,8 +44,10 @@ const Navbar = () => {
                     </div>
                 </div>
             </nav>
-            <Outlet />
-        </>
+            <div {...handleSwipe}>
+                <Outlet />
+            </div>
+        </div>
     );
 };
 export default Navbar;
