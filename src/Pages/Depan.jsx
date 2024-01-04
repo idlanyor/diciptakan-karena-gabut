@@ -11,7 +11,7 @@ export default function Depan() {
                         <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">Portal PPDB </h1>
                         <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">SMP Negeri 48 Rosevelt </h1>
                         <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt doloribus ducimus ullam laborum voluptatum aliquid recusandae modi, accusantium accusamus id dolor officiis dolorem nihil laudantium. Obcaecati labore eaque quaerat hic veritatis repellendus sunt consectetur a, sit blanditiis id ipsam quo ex nihil. Sit asperiores modi iure aperiam nulla minima cum.</p>
-                        <Link to={'/registrasi'} className="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white  bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
+                        <Link to={'/registrasi'} className="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white  bg-primary-700 dark:bg-blue-700 dark:hover:bg-blue-800 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
                             Daftar Sekarang
                             <svg className="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path>
@@ -21,8 +21,8 @@ export default function Depan() {
                             Masuk
                         </Link>
                     </div>
-                    <div className="lg:mt-0 lg:col-span-5 lg:flex">
-                        <img src={Edu} alt="mockup" className="w-1/2 lg:w-auto" />
+                    <div className="lg:mt-0 lg:col-span-5 lg:flex hidden">
+                        <img src={Edu} alt="mockup" className="w-1/2 lg:w-auto " />
                     </div>
                 </div>
             </section>

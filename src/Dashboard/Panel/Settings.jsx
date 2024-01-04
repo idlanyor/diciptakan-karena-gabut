@@ -11,12 +11,17 @@ export default function Settings() {
             <ul className="flex flex-wrap -mb-px text-sm font-medium text-center dark:text-white" id="default-tab" role="tablist">
                 <li className="me-2" role="presentation">
                     <button className={`inline-block p-4 border-b-2 rounded-t-lg ${activeTab === 'gelombangSettings' ? 'border-blue-500' : ''}`} onClick={() => changeTab('gelombangSettings')} type="button" role="tab" aria-controls="gelombangSettings" aria-selected={activeTab === 'gelombangSettings'}>
-                        Settings Gelombang
+                        Gelombang
                     </button>
                 </li>
                 <li className="me-2" role="presentation">
                     <button className={`inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 ${activeTab === 'jalurSettings' ? 'border-blue-500' : ''}`} onClick={() => changeTab('jalurSettings')} type="button" role="tab" aria-controls="jalurSettings" aria-selected={activeTab === 'jalurSettings'}>
-                        Settings Jalur Pendaftaran
+                        Jalur Pendaftaran
+                    </button>
+                </li>
+                <li className="me-2" role="presentation">
+                    <button className={`inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 ${activeTab === 'jadwalSettings' ? 'border-blue-500' : ''}`} onClick={() => changeTab('jadwalSettings')} type="button" role="tab" aria-controls="jalurSettings" aria-selected={activeTab === 'jadwalSettings'}>
+                        Jadwal Jalur Pendaftaran
                     </button>
                 </li>
             </ul>
@@ -26,6 +31,9 @@ export default function Settings() {
                 <GelombangSettings />
             </div>
             <div className={activeTab === 'jalurSettings' ? '' : 'hidden'} id="jalurSettings" role="tabpanel" aria-labelledby="jalurSettings-tab">
+                <JalurSettings />
+            </div>
+            <div className={activeTab === 'jadwalSettings' ? '' : 'hidden'} id="jadwalSettings" role="tabpanel" aria-labelledby="jalurSettings-tab">
                 <JalurSettings />
             </div>
         </div>

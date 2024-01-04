@@ -6,7 +6,7 @@ import ENDPOINT_PPDB from "../../constants";
 import NavbarPanel from "./Navbar";
 import SidebarPanel from "./Sidebar";
 import { delTokenPanel, getTokenPanel } from "../../Components/Reusable";
-import { useSwipeable } from "react-swipeable";
+import { useSwipeable } from 'react-swipeable';
 export default function DashboardPanel() {
     const token = getTokenPanel()
     const navigasi = useNavigate();
@@ -28,12 +28,7 @@ export default function DashboardPanel() {
                         })
                         // navigasi('/panel')
                     } else {
-                        console.log(res.data.tipe)
-                        if (res.data.tipe === 'panel') {
-                            console.log(res.data.user)
-                        } else if (res.data.tipe) {
-                            console.log('panel only')
-                        }
+                        console.log('Login Success')
                     }
                 })
                 .catch(e => console.log(e));

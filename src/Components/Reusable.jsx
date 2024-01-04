@@ -1,3 +1,7 @@
+import axios from "axios"
+// import { Modal } from "flowbite";
+import ENDPOINT_PPDB from "../constants"
+
 export const getTokenPanel = () => {
     return localStorage.getItem('tokenPanel')
 }
@@ -17,3 +21,8 @@ export const delTokenPendaftar = () => {
 export const setTokenPendaftar = (value) => {
     return localStorage.setItem('tokenPendaftar', value)
 }
+export const rosevelt = axios.create({
+    baseURL: ENDPOINT_PPDB
+})
+
+// export const modal = new Modal()
