@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { FaCalendarTimes, FaPencilAlt } from "react-icons/fa";
 import { useState } from "react";
 
@@ -42,7 +43,7 @@ export default function JalurSettings() {
         setEditModal(!editModal);
         setSelectedId(id)
     };
-    const selectedData = selectedId ? dummyData.find(data => data.id === selectedId) : null;
+    // const selectedData = selectedId ? dummyData.find(data => data.id === selectedId) : null;
     return (
         <div className="block p-6 bg-white border border-gray-200  shadow  dark:bg-gray-800 dark:border-gray-700 ">
             <div className="py-2 px-4 mx-auto lg:py-4">
@@ -98,7 +99,7 @@ export default function JalurSettings() {
                                             <button onClick={() => editHandler(d.id)} className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm p-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
                                                 <FaPencilAlt />
                                             </button>
-                                            <button onClick={() => editHandler(d.id)} className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm p-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+                                            <button onClick={() => hapusHandler(d.id)} className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm p-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
                                                 <FaPencilAlt />
                                             </button>
                                         </td>
