@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { FaSignInAlt } from "react-icons/fa";
+import { FaInfoCircle, FaSignInAlt, FaTimes } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -80,22 +80,18 @@ export default function Login() {
                     <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                         Login
                     </h1>
-                    <div className="p-4 mb-4 text-sm text-blue-800 bg-blue-50 dark:bg-gray-600 dark:text-blue-400" role="alert">
+                    <div className="p-4 mb-4 text-sm text-primary-800 bg-primary-200 rounded-lg dark:bg-gray-600 dark:text-blue-400" role="alert">
                         <span className="font-medium">Silahkan login menggunakan Email dan tanggal lahir Anda dengan format <strong>DDMMYYYY</strong></span>
                     </div>
-                    {validasi.code === 401 && showAlert && (<div id="alert-2" role="alert" className="flex items-center p-4 mb-4 text-red-800  bg-red-50 dark:bg-gray-800 dark:text-red-400">
-                        <svg className="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
-                        </svg>
+                    {validasi.code === 401 && showAlert && (<div id="alert-2" role="alert" className="flex items-center p-4 mb-4 text-red-800 rounded-full  bg-red-100 dark:bg-gray-600 dark:text-red-400">
+                        <FaInfoCircle/>
                         <span className="sr-only">Info</span>
                         <div className="ms-3 text-sm font-medium">
                             {validasi.message}
                         </div>
-                        <button type="button" onClick={closeAlert} className="ms-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500  focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-2" aria-label="Close">
+                        <button type="button" onClick={closeAlert} className="ms-auto -mx-1.5 -my-1.5 bg-red-100 text-red-500  focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-600 dark:text-red-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-2" aria-label="Close">
                             <span className="sr-only">Close</span>
-                            <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                            </svg>
+                            <FaTimes/>
                         </button>
                     </div>)}
 
@@ -115,7 +111,7 @@ export default function Login() {
                             </span>)}
                         </div>
 
-                        <button type="submit" disabled={isLoading} className="w-fit flex justify-center text-white bg-purple-600 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium  text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
+                        <button type="submit" disabled={isLoading} className="w-fit flex justify-center text-white bg-purple-600 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium  text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             {isLoading ? (<div role="status" className="flex space-x-2">
                                 <svg aria-hidden="true" className="w-5 text-gray-200 animate-spin dark:text-gray-600 fill-purple-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />
@@ -128,7 +124,7 @@ export default function Login() {
                             </>)}
                         </button>
                         <p className="text-sm font-light text-gray-500 dark:text-white">
-                            Belum mendaftar? <Link to={'/registrasi'} className="font-medium text-purple-600 hover:underline dark:text-purple-500">Daftar Sekarang</Link>
+                            Belum mendaftar? <Link to={'/registrasi'} className="font-medium text-purple-600 hover:underline dark:text-blue-500">Daftar Sekarang</Link>
                         </p>
                     </form>
                 </div>

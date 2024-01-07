@@ -30,7 +30,6 @@ export const rosevelt = axios.create({
 })
 /**
  * 
- * @param {string} targetEl berisi selector dom modal yang akan diinteraksi
  * @param {string} idModal value id modal yang akan diinteraksi
  * @returns instansiasi objek Modal untuk mengakses property dan method yang ada didalamnya
  */
@@ -56,3 +55,4 @@ export const modal = (idModal) => {
     })
     return modalInstance
 }
+

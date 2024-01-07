@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import letSwall from "../Components/Sweetalert";
 import ENDPOINT_PPDB from "../constants";
+import { rosevelt } from "../Components/Reusable";
 export default function Registrasi() {
     const navigasi = useNavigate();
     const [nama_lengkap, setNamaLengkap] = useState('');
@@ -28,7 +28,7 @@ export default function Registrasi() {
             tgl_lahir: tgl_lahir,
             jalur_pendaftaran: jalur_pendaftaran
         };
-        await axios.post(ENDPOINT_PPDB + 'registrasi', requestData)
+        await rosevelt.post(ENDPOINT_PPDB + 'registrasi', requestData)
             .then(() => {
                 letSwall.fire({
                     titleText: "Sukses",
@@ -131,9 +131,9 @@ export default function Registrasi() {
                                 <option value={"Migrasi Orang tua"}>Migrasi Orang tua</option>
                             </select>
                         </div>
-                        <button type="submit" className="w-full text-white bg-purple-600 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium  text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">Sign in</button>
+                        <button type="submit" className="w-full text-white bg-purple-600 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium  text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">Daftar Sekarang</button>
                         <p className="text-sm font-light text-gray-500 dark:text-white">
-                            Sudah punya akun? <Link to={'/login'} className="font-medium text-purple-600 hover:underline dark:text-purple-500">Login Sekarang</Link>
+                            Sudah punya akun? <Link to={'/login'} className="font-medium text-purple-600 hover:underline dark:text-purple-500">Login</Link>
                         </p>
                     </form>
                 </div>
