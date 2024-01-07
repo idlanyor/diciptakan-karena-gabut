@@ -125,10 +125,10 @@ export default function Registrasi() {
                             </label>
                             <select onChange={handleJalurPendaftaranChange} name="jalur_pendaftaran" id="jalur_pendaftaran" value={jalur_pendaftaran} className={`bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm  focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500`}>
                                 <option value={0}>-- Pilih Jalur Pendaftaran --</option>
-                                <option value={1}>Zonasi (Wilayah)</option>
-                                <option value={2}>Afirmasi</option>
-                                <option value={3}>Prestasi</option>
-                                <option value={4}>Migrasi Orang tua</option>
+                                <option value={"Zonasi (Wilayah)"}>Zonasi (Wilayah)</option>
+                                <option value={"Afirmasi"}>Afirmasi</option>
+                                <option value={"Prestasi"}>Prestasi</option>
+                                <option value={"Migrasi Orang tua"}>Migrasi Orang tua</option>
                             </select>
                         </div>
                         <button type="submit" className="w-full text-white bg-purple-600 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium  text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">Sign in</button>

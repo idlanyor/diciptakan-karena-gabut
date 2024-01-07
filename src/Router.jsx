@@ -10,7 +10,7 @@ import Biodata from './Dashboard/Pendaftar/Biodata';
 import DashboardPendaftar from './Dashboard/Pendaftar/Dashboard';
 import AkunPendaftar from './Dashboard/Pendaftar/AkunPendaftar';
 import InformasiUmumPendaftar from './Dashboard/Pendaftar/Dashboard/InformasiUmumPendaftar';
-import UploadFilePendaftar from './Dashboard/Pendaftar/UploadFile';
+import FilePendaftar from './Dashboard/Pendaftar/FilePendaftar';
 import ManajemenUser from './Dashboard/Panel/ManajemenUser';
 import Overview from './Dashboard/Panel/Overview';
 import Settings from './Dashboard/Panel/Settings';
@@ -43,7 +43,7 @@ export default function Router() {
       <Route path='dashboard' element={<DashboardPendaftar />}>
         <Route index Component={InformasiUmumPendaftar}/>
         <Route path='biodata' Component={Biodata}/>
-        <Route path='upload' Component={UploadFilePendaftar}/>
+        <Route path='file-pendaftar' Component={FilePendaftar}/>
         <Route path='akun' Component={AkunPendaftar}/>
         <Route path='pengumuman' Component={PengumumanPendaftar}/>
         <Route path='cetak' Component={AkunPendaftar}/>

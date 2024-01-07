@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { FaBullhorn, FaSignOutAlt, FaUpload } from "react-icons/fa";
-import { FaGrip, FaNoteSticky, FaPrint } from "react-icons/fa6";
+import { FaGrip, FaNoteSticky } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 const Sidebar = ({ isDrawerOpen, handleSwipe, logoutHandler }) => {
   return (<aside {...handleSwipe} className={`fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform ${isDrawerOpen ? 'translate-x-0' : '-translate-x-full'} bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700`} aria-label="Sidenav" id="drawer-navigation">
@@ -30,7 +30,7 @@ const Sidebar = ({ isDrawerOpen, handleSwipe, logoutHandler }) => {
           </Link>
         </li>
         <li className="border-b border-gray-200 dark:border-gray-700">
-          <Link to={"/dashboard/upload"} className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+          <Link to={"/dashboard/file-pendaftar"} className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
             <FaUpload />
             <span className="ml-3">Upload Berkas</span>
           </Link>
@@ -39,12 +39,6 @@ const Sidebar = ({ isDrawerOpen, handleSwipe, logoutHandler }) => {
           <Link to={'/dashboard/pengumuman'} className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
             <FaBullhorn />
             <span className="ml-3">Pengumuman</span>
-          </Link>
-        </li>
-        <li className="border-b border-gray-200 dark:border-gray-700">
-          <Link to={'/dashboard/cetak'} className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-            <FaPrint />
-            <span className="ml-3">Menu Cetak</span>
           </Link>
         </li>
       </ul>
