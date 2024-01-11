@@ -1,6 +1,8 @@
-// import { FaSearch } from "react-icons/fa";\
+// import { useState } from "react";
 
+// import { FaSearch } from "react-icons/fa";\
 function ShowFilePendaftar() {
+    // const [data,setData] = useState()
     return (
         <div className="block p-6 bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
             <h5 className="mb-2 p-2 text-2xl font-bold border-b tracking-tight text-gray-900 dark:text-white">

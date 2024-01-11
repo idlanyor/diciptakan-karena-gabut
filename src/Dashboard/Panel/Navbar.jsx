@@ -2,9 +2,10 @@
 import { Link } from "react-router-dom";
 const NavbarPanel = ({ toggleDrawer }) => {
     // user drawer
-    return (<nav className="bg-white border-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-50">
+    return (
+        <nav className="bg-white border-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-50">
             <div className="flex flex-wrap justify-between items-center">
-                <div className="flex justify-start items-center">
+                <div className="flex justify-around items-center">
                     <button onClick={toggleDrawer} className="p-2 mr-2 text-gray-600 rounded-lg cursor-pointer md:hidden hover:text-gray-900 hover:bg-gray-100 focus:bg-gray-100 dark:focus:bg-gray-700 focus:ring-2 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white">
                         <svg aria-hidden="true" className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"></path>
@@ -14,13 +15,13 @@ const NavbarPanel = ({ toggleDrawer }) => {
                         </svg>
                         <span className="sr-only">Toggle sidebar</span>
                     </button>
-                    <Link to={'/dashboard'} className="flex items-center justify-between mr-4">
-                        <img src="https://flowbite.s3.amazonaws.com/logo.svg" className="mr-3 h-8" alt="PPDB Online"/>
+                    <Link to={'/panel/dashboard'} className="flex items-center justify-between mr-4">
+                        <img src="https://flowbite.s3.amazonaws.com/logo.svg" className="mr-3 h-8" alt="PPDB Online" />
                         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">PPDB</span>
                     </Link>
                 </div>
-
             </div>
-        </nav>);
+        </nav>
+    );
 };
 export default NavbarPanel;

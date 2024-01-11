@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { FaPencilAlt } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import { modal, rosevelt } from "../../../Components/Reusable";
+import { getTokenPanel, modal, rosevelt } from "../../../Components/Reusable";
 import { FaRegCalendarDays } from "react-icons/fa6";
 import ShowJadwal from "./Modal/ShowJadwal";
 
@@ -15,16 +15,26 @@ export default function JalurSettings() {
     const showJadwalModal = modal(JadwalModalId.show)
     const [selectedId, setSelectedId] = useState(0);
     const [data, setData] = useState([]);
+    const [jadwal, setJadwal] = useState([]);
     useEffect(() => {
+        rosevelt.defaults.headers.common['Authorization'] = `Bearer ${getTokenPanel()}`
         rosevelt.get('panel/jalur').then((res) => {
-            setData(res.data)
+            setData(res.data);
         }).catch((e) => {
             console.log(e);
         })
     }, [])
-
-    const toggleHandler = (id) => {
-        showJadwalModal.toggle()
+    const getJadwal = async (id) => {
+        await setJadwal(data[id]?.jadwal_jalur_pendaftaran)
+    }
+    const showHandler = async (id) => {
+        showJadwalModal.show()
+        await getJadwal(id);
+        console.log(id)
+        setSelectedId(id)
+    };
+    const closeHandler = async (id) => {
+        showJadwalModal.hide()
         setSelectedId(id)
     };
     const editHandler = (id) => {
@@ -63,7 +73,7 @@ export default function JalurSettings() {
                             {
                                 data.map((d, index) => (
                                     <>
-                                        <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                        <tr key={d.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                             <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 {index + 1}
                                             </th>
@@ -71,7 +81,7 @@ export default function JalurSettings() {
                                                 {d.nama_jalur}
                                             </td>
                                             <td className="px-6 py-4">
-                                                <button onClick={() => toggleHandler(d.id)} className="flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm p-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+                                                <button onClick={() => showHandler(d.id)} className="flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm p-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
                                                     <FaRegCalendarDays />&nbsp;Lihat Jadwal
                                                 </button>
                                             </td>
@@ -91,7 +101,7 @@ export default function JalurSettings() {
                                     </>
                                 ))
                             }
-                            <ShowJadwal idModal={JadwalModalId.show} toggleHandler={toggleHandler} id={selectedId} />
+                            <ShowJadwal jadwal={jadwal} idModal={JadwalModalId.show} closeHandler={closeHandler} id={selectedId} />
                         </tbody>
                     </table>
                 </div>
