@@ -1,7 +1,9 @@
+import Pengumuman from "../../Pages/Pengumuman";
+
 function PengumumanPendaftar() {
-    return ( 
-        <>Hello World</>
-     );
+    return (
+        <><Pengumuman /></>
+    );
 }
 
 export default PengumumanPendaftar;

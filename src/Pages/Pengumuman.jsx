@@ -24,7 +24,7 @@ function Pengumuman() {
         },
     ]
     return (
-        <div className="p-5 bg-blue-300">
+        <div className="p-5">
             <h1 className="text-2xl mb-2 font-extrabold  text-slate-900 dark:text-white">Informasi lain terkait Pendaftaran</h1>
             {
                 posts.map((p, index) => (

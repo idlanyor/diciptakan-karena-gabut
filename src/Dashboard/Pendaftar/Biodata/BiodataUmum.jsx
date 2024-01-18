@@ -22,15 +22,32 @@ export default function BiodataUmum() {
         addr_rw: '',
         id_pendaftar: 0,
     };
+    const initValidasi = {
+        nama_lengkap: [],
+        nik: [],
+        jk: [],
+        tmpt_lahir: [],
+        tgl_lahir: [],
+        agama: [],
+        kewarganegaraan: [],
+        addr_prov: [],
+        addr_kab: [],
+        addr_kec: [],
+        addr_des: [],
+        addr_dus: [],
+        addr_rt: [],
+        addr_rw: [],
+    };
     const [value, setValue] = useState(initialData)
+    const [validasi, setValidasi] = useState(initValidasi)
     const inputHandler = (e) => {
         const { name, value } = e.target;
         setValue({
             ...value,
             [name]: value,
         });
-    };    
-    
+    };
+
     // Provinsi
     const [provinsi, setProvinsi] = useState([]);
     const [idProv, setIdProv] = useState(0);
@@ -109,37 +126,39 @@ export default function BiodataUmum() {
             rosevelt.defaults.headers.common['Authorization'] = `Bearer ${getTokenPendaftar()}`;
             await rosevelt.get(ENDPOINT_PPDB + 'biodata-umum')
                 .then((res) => {
-                    setValue(res.data.data);
-                    // Setter agama dropdown
-                    const setDropdownValue = (idElement, value) => {
-                        const elDropdown = document.getElementById(idElement);
-                        const selectedEl = res.data.data[value];
-                        for (let i = 0; i < elDropdown.options.length; i++) {
-                            if (elDropdown.options[i].value === selectedEl) {
-                                elDropdown.options[i].setAttribute('selected', 'selected');
+                    if (res.data.data !== null) {
+                        setValue(res.data.data);
+                        // Setter agama dropdown
+                        const setDropdownValue = (idElement, value) => {
+                            const elDropdown = document.getElementById(idElement);
+                            const selectedEl = res.data.data[value];
+                            for (let i = 0; i < elDropdown.options.length; i++) {
+                                if (elDropdown.options[i].value === selectedEl) {
+                                    elDropdown.options[i].setAttribute('selected', 'selected');
+                                }
                             }
                         }
-                    }
-                    if (document.getElementById('agama')) {
-                        setDropdownValue('agama', 'agama')
-                    }
-                    if (document.getElementById('kewarganegaraan')) {
-                        setDropdownValue('kewarganegaraan', 'kewarganegaraan')
-                    }
-                    if (document.getElementById('provinsi')) {
-                        setDropdownValue('provinsi', 'addr_prov')
-                    }
-                    if (document.getElementById('kabupaten')) {
-                        setDropdownValue('kabupaten', 'addr_kab')
-                    }
-                    if (document.getElementById('kecamatan')) {
-                        setDropdownValue('kecamatan', 'addr_kec')
-                    }
-                    if (document.getElementById('kelurahan')) {
-                        setDropdownValue('kelurahan', 'addr_des')
-                    }
-                    if (document.getElementById('jenis_kelamin')) {
-                        setDropdownValue('jenis_kelamin', 'jk')
+                        if (document.getElementById('agama')) {
+                            setDropdownValue('agama', 'agama')
+                        }
+                        if (document.getElementById('kewarganegaraan')) {
+                            setDropdownValue('kewarganegaraan', 'kewarganegaraan')
+                        }
+                        if (document.getElementById('provinsi')) {
+                            setDropdownValue('provinsi', 'addr_prov')
+                        }
+                        if (document.getElementById('kabupaten')) {
+                            setDropdownValue('kabupaten', 'addr_kab')
+                        }
+                        if (document.getElementById('kecamatan')) {
+                            setDropdownValue('kecamatan', 'addr_kec')
+                        }
+                        if (document.getElementById('kelurahan')) {
+                            setDropdownValue('kelurahan', 'addr_des')
+                        }
+                        if (document.getElementById('jenis_kelamin')) {
+                            setDropdownValue('jenis_kelamin', 'jk')
+                        }
                     }
                 }).catch((e) => { throw e; });
         };
@@ -167,7 +186,13 @@ export default function BiodataUmum() {
             });
         }
         catch (error) {
-            console.error('Terjadi kesalahan:', error);
+            setValidasi(error.response?.data)
+            letSwall.fire({
+                title: 'Ups,Terjadi Kesalahan',
+                text: error,
+                icon: 'error'
+            })
+            // console.log(error.response?.data.nama_lengkap[0]);
         }
     };
 
@@ -175,6 +200,7 @@ export default function BiodataUmum() {
         <div className="py-2 px-4 mx-auto lg:py-4">
             <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">Biodata Umum</h2>
             <form onSubmit={handleSubmit}>
+                {validasi.nama_lengkap && (<span>{validasi.nama_lengkap[0]}</span>)}
                 <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
                     <div className="sm:col-span-2">
                         <label htmlFor="nama_lengkap" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Lengkap</label>
@@ -231,7 +257,7 @@ export default function BiodataUmum() {
                     </div>
                     <div>
                         <label htmlFor="kabupaten" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kabupaten</label>
-                        <select disabled={kabupaten.length === 0} name="addr_kab" onChange={handleKabChange} id="kabupaten" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm -lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        <select name="addr_kab" onChange={handleKabChange} id="kabupaten" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm -lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             {kabupaten.length == 0 && <option defaultValue={1}>Pilih Provinsi terlebih dahulu</option>}
                             {kabupaten.length > 0 && (<>
                                 <option defaultValue={1}>Pilih Kabupaten</option>
@@ -243,7 +269,7 @@ export default function BiodataUmum() {
                     </div>
                     <div>
                         <label htmlFor="kecamatan" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kecamatan</label>
-                        <select disabled={kecamatan.length === 0} name="addr_kec" onChange={handleKecChange} id="kecamatan" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm -lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        <select name="addr_kec" onChange={handleKecChange} id="kecamatan" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm -lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             {kecamatan.length == 0 && <option defaultValue={1}>Pilih Kabupaten terlebih dahulu</option>}
                             {kecamatan.length > 0 && (<>
                                 <option defaultValue={1}>Pilih Kecamatan</option>
@@ -255,7 +281,7 @@ export default function BiodataUmum() {
                     </div>
                     <div>
                         <label htmlFor="kelurahan" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kelurahan/Desa</label>
-                        <select disabled={kelurahan.length === 0} name="addr_des" id="kelurahan" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm -lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        <select name="addr_des" id="kelurahan" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm -lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             {kelurahan.length == 0 && <option defaultValue={1}>Pilih Kecamatan terlebih dahulu</option>}
                             {kelurahan.length > 0 && (<>
                                 <option defaultValue={1}>Pilih Kelurahan</option>
