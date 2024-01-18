@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { FaPencilAlt } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import { getTokenPanel, modal, rosevelt } from "../../../Components/Reusable";
+import { getTokenPanel, makeModal, rosevelt } from "../../../Components/Reusable";
 import { FaRegCalendarDays } from "react-icons/fa6";
 import ShowJadwal from "./Modal/ShowJadwal";
 
@@ -12,7 +12,7 @@ export default function JalurSettings() {
         edit: 'editJadwal',
         hapus: 'hapusJadwal'
     }
-    const showJadwalModal = modal(JadwalModalId.show)
+    const showJadwalModal = makeModal(JadwalModalId.show)
     const [selectedId, setSelectedId] = useState(0);
     const [data, setData] = useState([]);
     const [jadwal, setJadwal] = useState([]);

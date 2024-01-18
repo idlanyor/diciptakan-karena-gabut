@@ -4,8 +4,10 @@ import React, { useEffect, useMemo, useState } from "react";
 import ENDPOINT_PPDB from "../../constants";
 import letSwall from "../../Components/Sweetalert";
 import { getTokenPendaftar } from "../../Components/Reusable";
+import { useNavigate } from "react-router-dom";
 export default function AkunPendaftar() {
     const [dataPendaftar, setDataPendaftar] = useState();
+    const navigasi = useNavigate();
     useEffect(() => {
         const getDataPendaftar = async () => {
             axios.defaults.headers.common['Authorization'] = `Bearer ${getTokenPendaftar()}`;
@@ -78,6 +80,7 @@ export default function AkunPendaftar() {
                     popup: 'bg-gray-50 dark:bg-slate-900'
                 }
             });
+            navigasi('/dashboard')
         }
         catch (error) {
             console.error('Terjadi kesalahan:', error);

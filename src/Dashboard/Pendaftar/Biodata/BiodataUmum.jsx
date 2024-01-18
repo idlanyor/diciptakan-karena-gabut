@@ -151,8 +151,8 @@ export default function BiodataUmum() {
         let dataToSend = { ...value };
         console.log(dataToSend)
         try {
-            axios.defaults.headers.common['Authorization'] = `Bearer ${getTokenPendaftar()}`;
-            await axios.post(ENDPOINT_PPDB + 'biodata-umum', dataToSend);
+            rosevelt.defaults.headers.common['Authorization'] = `Bearer ${getTokenPendaftar()}`;
+            await rosevelt.post(ENDPOINT_PPDB + 'biodata-umum', dataToSend);
             // Berhasil mengirim, lakukan sesuatu (redirect, tampilkan pesan sukses, dll.)
             console.log('Data berhasil dikirim:', dataToSend);
             letSwall.fire({
