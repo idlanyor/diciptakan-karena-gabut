@@ -22,6 +22,7 @@ export default function BiodataUmum() {
         addr_rw: '',
         id_pendaftar: 0,
     };
+    
     const initValidasi = {
         nama_lengkap: [],
         nik: [],
