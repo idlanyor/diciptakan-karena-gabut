@@ -41,12 +41,13 @@ export default function BiodataUmum() {
     const [value, setValue] = useState(initialData)
     const [validasi, setValidasi] = useState(initValidasi)
     const inputHandler = (e) => {
-        const { name, value } = e.target;
-        setValue({
-            ...value,
-            [name]: value,
-        });
+        const { name, value: inputValue } = e.target;
+        setValue((prevValue) => ({
+            ...prevValue,
+            [name]: inputValue,
+        }));
     };
+
 
     // Provinsi
     const [provinsi, setProvinsi] = useState([]);
@@ -67,6 +68,7 @@ export default function BiodataUmum() {
             const selectedCode = provinsi[selectedIndex - 1].id;
             setIdProv(selectedCode);
         }
+        inputHandler(e)
     };
     // Kabupaten
     const [kabupaten, setKabupaten] = useState([]);
@@ -87,6 +89,7 @@ export default function BiodataUmum() {
             const selectedCode = kabupaten[selectedIndex - 1].id;
             setIdKab(selectedCode);
         }
+        inputHandler(e)
     };
     // Kecamatan
     const [kecamatan, setKecamatan] = useState([]);
@@ -107,6 +110,7 @@ export default function BiodataUmum() {
             const selectedCode = kecamatan[selectedIndex - 1].id;
             setIdKec(selectedCode);
         }
+        inputHandler(e)
     };
     // Kelurahan
     const [kelurahan, setKelurahan] = useState([]);
@@ -167,8 +171,8 @@ export default function BiodataUmum() {
     //kirim ke server
     const handleSubmit = async (e) => {
         e.preventDefault();
-        let dataToSend = { ...value };
-        console.log(dataToSend)
+        let dataToSend = { ...value, id_pendaftar: 0 };
+        // console.log(dataToSend)
         try {
             rosevelt.defaults.headers.common['Authorization'] = `Bearer ${getTokenPendaftar()}`;
             await rosevelt.post(ENDPOINT_PPDB + 'biodata-umum', dataToSend);
@@ -187,6 +191,7 @@ export default function BiodataUmum() {
         }
         catch (error) {
             setValidasi(error.response?.data)
+            console.log(error)
             letSwall.fire({
                 title: 'Ups,Terjadi Kesalahan',
                 text: error,
@@ -212,7 +217,7 @@ export default function BiodataUmum() {
                     </div>
                     <div className="w-full">
                         <label htmlFor="jenis_kelamin" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis Kelamin</label>
-                        <select onChange={inputHandler} id="jenis_kelamin" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm -lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        <select name="jk" onChange={inputHandler} id="jenis_kelamin" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm -lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             <option>Pilih Jenis Kelamin</option>
                             <option value="Laki - laki">Laki - Laki</option>
                             <option value="Perempuan">Perempuan</option>
@@ -228,7 +233,7 @@ export default function BiodataUmum() {
                     </div>
                     <div>
                         <label htmlFor="agama" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Agama</label>
-                        <select onChange={inputHandler} id="agama" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm -lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        <select name="agama" onChange={inputHandler} id="agama" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm -lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             <option>Pilih Agama</option>
                             <option value="Islam">Islam</option>
                             <option value="Kristen">Kristen</option>
@@ -240,7 +245,7 @@ export default function BiodataUmum() {
                     </div>
                     <div>
                         <label htmlFor="kewarganegaraan" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kewarganegaraan</label>
-                        <select onChange={inputHandler} id="kewarganegaraan" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm -lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        <select onChange={inputHandler} name="kewarganegaraan" id="kewarganegaraan" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm -lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             <option>Pilih Kewarganegaraan</option>
                             <option value="WNI">WNI ( Warga Negara Indonesia )</option>
                             <option value="WNA">WNA ( Warga Negara Asing )</option>
@@ -249,8 +254,8 @@ export default function BiodataUmum() {
                     <div>
                         <label htmlFor="provinsi" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Provinsi</label>
                         <select id="provinsi" onChange={handleProvChange} name="addr_prov" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm -lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                            <option defaultValue={1}>Pilih Provinsi</option>
-                            {provinsi.map((pv) => (<option key={pv.id} id={pv.code} value={pv.name}>
+                            <option value={1}>Pilih Provinsi</option>
+                            {provinsi.map((pv) => (<option key={pv.id} id={pv.code} value={pv.id}>
                                 {pv.name}
                             </option>))}
                         </select>
@@ -260,8 +265,8 @@ export default function BiodataUmum() {
                         <select name="addr_kab" onChange={handleKabChange} id="kabupaten" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm -lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             {kabupaten.length == 0 && <option defaultValue={1}>Pilih Provinsi terlebih dahulu</option>}
                             {kabupaten.length > 0 && (<>
-                                <option defaultValue={1}>Pilih Kabupaten</option>
-                                {kabupaten.map((kab) => (<option key={kab.id} id={kab.code} value={kab.name}>
+                                <option value={1}>Pilih Kabupaten</option>
+                                {kabupaten.map((kab) => (<option key={kab.id} id={kab.code} value={kab.id}>
                                     {kab.name}
                                 </option>))}
                             </>)}
@@ -270,10 +275,10 @@ export default function BiodataUmum() {
                     <div>
                         <label htmlFor="kecamatan" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kecamatan</label>
                         <select name="addr_kec" onChange={handleKecChange} id="kecamatan" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm -lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                            {kecamatan.length == 0 && <option defaultValue={1}>Pilih Kabupaten terlebih dahulu</option>}
+                            {kecamatan.length == 0 && <option value={1}>Pilih Kabupaten terlebih dahulu</option>}
                             {kecamatan.length > 0 && (<>
-                                <option defaultValue={1}>Pilih Kecamatan</option>
-                                {kecamatan.map((kec) => (<option key={kec.id} id={kec.code} value={kec.name}>
+                                <option value={1}>Pilih Kecamatan</option>
+                                {kecamatan.map((kec) => (<option key={kec.id} id={kec.code} value={kec.id}>
                                     {kec.name}
                                 </option>))}
                             </>)}
@@ -281,11 +286,11 @@ export default function BiodataUmum() {
                     </div>
                     <div>
                         <label htmlFor="kelurahan" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kelurahan/Desa</label>
-                        <select name="addr_des" id="kelurahan" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm -lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                            {kelurahan.length == 0 && <option defaultValue={1}>Pilih Kecamatan terlebih dahulu</option>}
+                        <select onChange={inputHandler} name="addr_des" id="kelurahan" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm -lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            {kelurahan.length == 0 && <option value={1}>Pilih Kecamatan terlebih dahulu</option>}
                             {kelurahan.length > 0 && (<>
-                                <option defaultValue={1}>Pilih Kelurahan</option>
-                                {kelurahan.map((kelur) => (<option key={kelur.id} id={kelur.code} value={kelur.name}>
+                                <option value={1}>Pilih Kelurahan</option>
+                                {kelurahan.map((kelur) => (<option key={kelur.id} id={kelur.code} value={kelur.id}>
                                     {kelur.name}
                                 </option>))}
                             </>)}
@@ -293,7 +298,7 @@ export default function BiodataUmum() {
                     </div>
                     <div className="sm:col-span-2">
                         <label htmlFor="rt" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dusun</label>
-                        <input type="text" onChange={inputHandler} value={value.addr_dus} name="addr_dus" id="dusun" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm -lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="RT" />
+                        <input type="text" onChange={inputHandler} value={value.addr_dus} name="addr_dus" id="dusun" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm -lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Dusun" />
                     </div>
                     <div>
                         <label htmlFor="rt" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">RT</label>

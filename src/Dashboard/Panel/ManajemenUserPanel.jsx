@@ -1,6 +1,6 @@
 import { FaEye, FaTrashAlt, FaUserEdit } from "react-icons/fa";
 
-export default function ManajemenUser() {
+export default function ManajemenUserPanel() {
     return (<>
         {/* Start block */}
         <section className=" antialiased">
@@ -9,7 +9,7 @@ export default function ManajemenUser() {
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
                         <div className="flex-1 flex items-center space-x-2">
                             <h5>
-                                <span className="text-gray-300 text-xl">Manajemen User Pendaftar</span>
+                                <span className="text-gray-300 text-xl">Manajemen User Panel</span>
                             </h5>
                             <button type="button" className="group" data-tooltip-target="results-tooltip">
                                 <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" viewBox="0 0 20 20" fill="currentColor">
@@ -39,11 +39,8 @@ export default function ManajemenUser() {
                                 <tr>
                                     <th scope="col" className="p-4">No</th>
                                     <th scope="col" className="p-4">Nama Lengkap</th>
-                                    <th scope="col" className="p-4">Email</th>
-                                    <th scope="col" className="p-4">Tangga Daftar</th>
-                                    <th scope="col" className="p-4">Gelombang/Tahun</th>
-                                    <th scope="col" className="p-4">Tanggal Diterima</th>
-                                    <th scope="col" className="p-4">Jalur yang Dipilih</th>
+                                    <th scope="col" className="p-4">Jabatan</th>
+                                    <th scope="col" className="p-4">Username</th>
                                     <th scope="col" className="p-4">Action</th>
                                 </tr>
                             </thead>
@@ -54,11 +51,8 @@ export default function ManajemenUser() {
                                         1
                                     </td>
                                     <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">Roynaldi</td>
+                                    <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">Petugas Pendaftaran</td>
                                     <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">sangjuara@gmail.com</td>
-                                    <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">12 Mei 2001</td>
-                                    <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">2/2023</td>
-                                    <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">Belum ditentukan</td>
-                                    <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">Afirmasi</td>
                                     <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         <div className="flex items-center space-x-4">
                                             <button type="button" className="py-2 px-3 flex items-center text-sm font-medium text-center text-white bg-green-700  hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">

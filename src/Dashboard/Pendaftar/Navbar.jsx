@@ -16,7 +16,7 @@ const Navbar = ({ toggleDrawer }) => {
                         <span className="sr-only">Toggle sidebar</span>
                     </button>
                     <Link to={'/dashboard'} className="flex items-center justify-between mr-4">
-                        <img src="https://flowbite.s3.amazonaws.com/logo.svg" className="mr-3 h-8" alt="PPDB Online" />
+                        <img src="/vite.svg" className="mr-3 h-8" alt="PPDB Online" />
                         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">PPDB</span>
                     </Link>
                 </div>

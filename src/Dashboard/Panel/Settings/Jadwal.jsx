@@ -1,10 +1,19 @@
 /* eslint-disable no-unused-vars */
 import { FaCalendarTimes, FaPencilAlt } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getTokenPanel, rosevelt } from "../../../Components/Reusable";
 
-export default function JalurSettings() {
+export default function JadwalSettings() {
     const [editModal, setEditModal] = useState(false);
     const [selectedId, setSelectedId] = useState();
+    useEffect(() => {
+        rosevelt.defaults.headers.common['Authorization'] = `Bearer ${getTokenPanel()}`
+        rosevelt.get('panel/jadwal').then((res) => {
+            console.log(res);
+        }).catch((e) => {
+            console.log(e);
+        })
+    }, [])
     const dummyData = [
         {
             "id": 1,
@@ -75,7 +84,7 @@ export default function JalurSettings() {
                             </tr>
                         </thead>
                         <tbody>
-                            {
+                            {/* {
                                 dummyData.map((d, index) => (
                                     <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -105,7 +114,7 @@ export default function JalurSettings() {
                                         </td>
                                     </tr>
                                 ))
-                            }
+                            } */}
 
                         </tbody>
                     </table>

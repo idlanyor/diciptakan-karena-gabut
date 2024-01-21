@@ -20,6 +20,7 @@ import JadwalPendaftaran from './Pages/JadwalPendaftaran';
 import Pengumuman from './Pages/Pengumuman';
 import RincianBiaya from './Pages/RincianBiaya';
 import PengumumanPendaftar from './Dashboard/Pendaftar/Pengumuman';
+import ManajemenUserPanel from './Dashboard/Panel/ManajemenUserPanel';
 export default function Router() {
     return (<Routes>
       <Route path='*' Component={NotFound}/>
@@ -35,6 +36,7 @@ export default function Router() {
       </Route>
       <Route path='panel' Component={DashboardPanel}>
         <Route path='user' Component={ManajemenUser}/>
+        <Route path='userpanel' Component={ManajemenUserPanel}/>
         <Route path='dashboard' element={<Overview />}/>
         <Route path='pendaftaran' element={<Overv />}/>
         <Route path='posts' element={<Overview />}/>

@@ -18,9 +18,9 @@ function FilePendaftar() {
     });
     const fileFields = [
         { label: 'Kartu Keluarga', id: 0, name: 'kk' },
-        { label: 'Ijazah', id: 1, name: 'ijazah' },
-        { label: 'Surat Keterangan Lulus', id: 2, name: 'skl' },
-        { label: 'Pasfoto Rasio 4x6', id: 3, name: 'pasfoto' },
+        { label: 'Surat Keterangan Lulus', id: 1, name: 'skl' },
+        { label: 'Pasfoto Rasio 4x6', id: 2, name: 'pasfoto' },
+        { label: 'Ijazah', id: 3, name: 'ijazah' },
     ];
     useEffect(() => {
         rosevelt.defaults.headers.common['Authorization'] = `Bearer ${getTokenPendaftar()}`
@@ -136,7 +136,7 @@ function FilePendaftar() {
                                     </th>
                                     <td className="px-6 py-4">
                                         {
-                                            (d.url_gambar === "") ? 'Belum Upload' : 'Sudah Upload'
+                                            (d.url_gambar === "" || d.url_gambar === null) ? 'Belum Upload' : 'Sudah Upload'
                                         }
                                     </td>
                                     <td className="px-6 py-4 space-x-4 flex">
@@ -160,7 +160,7 @@ function FilePendaftar() {
                                                     </div>
                                                     <div className="p-4 md:p-5 space-y-4">
                                                         {
-                                                            (d.url_gambar === "") ? (<span className=" text-gray-800 dark:text-gray-300 text-lg"> Belum Upload File</span>)
+                                                            (d.url_gambar === "" || d.url_gambar === null) ? (<span className=" text-gray-800 dark:text-gray-300 text-lg"> Belum Upload File</span>)
                                                                 :
                                                                 (<img src={STORAGE + d.url_gambar} />)
                                                         }

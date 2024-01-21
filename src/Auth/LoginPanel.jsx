@@ -117,7 +117,7 @@ export default function Login() {
                             </>)}
                         </button>
                         <p className="text-sm font-light text-gray-500 dark:text-white">
-                            Belum mendaftar? <Link to={'/registrasi'} className="font-medium text-purple-600 hover:underline dark:text-purple-500">Daftar Sekarang</Link>
+                            Belum mendaftar? <Link to={'/panel/registrasi'} className="font-medium text-purple-600 hover:underline dark:text-purple-500">Daftar Sekarang</Link>
                         </p>
                     </form>
                 </div>

@@ -1,4 +1,4 @@
-import { FaCogs, FaUsers } from "react-icons/fa";
+import { FaCogs, FaUserCog, FaUsers } from "react-icons/fa";
 import { FaGrip, FaUsersBetweenLines } from "react-icons/fa6";
 export const MenuSidebarPanel = [
     {
@@ -7,9 +7,14 @@ export const MenuSidebarPanel = [
         icon: FaGrip
     },
     {
-        judul: 'Manajemen Pengguna',
+        judul: 'Manajemen User Pendaftar',
         link: '/panel/user',
         icon: FaUsers
+    },
+    {
+        judul: 'Manajemen User Panel',
+        link: '/panel/userpanel',
+        icon: FaUserCog
     },
     {
         judul: 'Kelola Pendaftaran',

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import JalurSettings from "./Settings/Jalur";
 import GelombangSettings from "./Settings/Gelombang";
+import JadwalSettings from "./Settings/Jadwal";
+import TahunAkademikSettings from "./Settings/TahunAkademik";
 export default function Settings() {
     const [activeTab, setActiveTab] = useState('gelombangSettings');
     const changeTab = (tabId) => {
@@ -24,6 +26,11 @@ export default function Settings() {
                         Jadwal Jalur Pendaftaran
                     </button>
                 </li>
+                <li className="me-2" role="presentation">
+                    <button className={`inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 ${activeTab === 'tahunAkademikSettings' ? 'border-blue-500' : ''}`} onClick={() => changeTab('tahunAkademikSettings')} type="button" role="tab" aria-controls="jalurSettings" aria-selected={activeTab === 'jadwalSettings'}>
+                        Tahun Akademik
+                    </button>
+                </li>
             </ul>
         </div>
         <div id="biodata">
@@ -33,8 +40,11 @@ export default function Settings() {
             <div className={activeTab === 'jalurSettings' ? '' : 'hidden'} id="jalurSettings" role="tabpanel" aria-labelledby="jalurSettings-tab">
                 <JalurSettings />
             </div>
-            <div className={activeTab === 'jadwalSettings' ? '' : 'hidden'} id="jadwalSettings" role="tabpanel" aria-labelledby="jalurSettings-tab">
-                <JalurSettings />
+            <div className={activeTab === 'jadwalSettings' ? '' : 'hidden'} id="jadwalSettings" role="tabpanel" aria-labelledby="jadwalSettings-tab">
+                <JadwalSettings />
+            </div>
+            <div className={activeTab === 'tahunAkademikSettings' ? '' : 'hidden'} id="tahunAkademikSettings" role="tabpanel" aria-labelledby="tahunAkademikSettings-tab">
+                <TahunAkademikSettings />
             </div>
         </div>
     </>);
