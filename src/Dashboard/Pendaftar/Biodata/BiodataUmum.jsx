@@ -149,21 +149,21 @@ export default function BiodataUmum() {
                         if (document.getElementById('kewarganegaraan')) {
                             setDropdownValue('kewarganegaraan', 'kewarganegaraan')
                         }
-                        if (document.getElementById('provinsi')) {
-                            setDropdownValue('provinsi', 'addr_prov')
-                        }
-                        if (document.getElementById('kabupaten')) {
-                            setDropdownValue('kabupaten', 'addr_kab')
-                        }
-                        if (document.getElementById('kecamatan')) {
-                            setDropdownValue('kecamatan', 'addr_kec')
-                        }
-                        if (document.getElementById('kelurahan')) {
-                            setDropdownValue('kelurahan', 'addr_des')
-                        }
-                        if (document.getElementById('jenis_kelamin')) {
-                            setDropdownValue('jenis_kelamin', 'jk')
-                        }
+                        // if (document.getElementById('provinsi')) {
+                        //     setDropdownValue('provinsi', 'addr_prov')
+                        // }
+                        // if (document.getElementById('kabupaten')) {
+                        //     setDropdownValue('kabupaten', 'addr_kab')
+                        // }
+                        // if (document.getElementById('kecamatan')) {
+                        //     setDropdownValue('kecamatan', 'addr_kec')
+                        // }
+                        // if (document.getElementById('kelurahan')) {
+                        //     setDropdownValue('kelurahan', 'addr_des')
+                        // }
+                        // if (document.getElementById('jenis_kelamin')) {
+                        //     setDropdownValue('jenis_kelamin', 'jk')
+                        // }
                     }
                 }).catch((e) => { throw e; });
         };
@@ -204,7 +204,7 @@ export default function BiodataUmum() {
 
     return (<div className="block p-6 bg-white border border-gray-200  shadow  dark:bg-gray-800 dark:border-gray-700 ">
         <div className="py-2 px-4 mx-auto lg:py-4">
-            <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">Biodata Umum</h2>
+            <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">Biodata</h2>
             <form onSubmit={handleSubmit}>
                 {validasi.nama_lengkap && (<span>{validasi.nama_lengkap[0]}</span>)}
                 <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">

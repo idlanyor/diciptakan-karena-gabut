@@ -1,6 +1,51 @@
+/* eslint-disable no-unused-vars */
+import { useState, useEffect } from "react";
 import { FaEye, FaTrashAlt, FaUserEdit } from "react-icons/fa";
+import { rosevelt } from "../../Components/Reusable";
 
-export default function ManajemenUser() {
+const ManajemenUser = () => {
+    // State untuk menyimpan data user
+    const [users, setUsers] = useState([]);
+    // State untuk menyimpan data biodata pendaftar
+    const [biodata, setBiodata] = useState([]);
+
+    // Mengambil data user saat komponen dimount
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    // Fungsi untuk mengambil data user dan biodata pendaftar dari backend
+    const fetchData = async () => {
+        try {
+            // Mengambil data user
+            const responseUser = await rosevelt('users');
+            const dataUser = await responseUser.json();
+            setUsers(dataUser.data);
+
+            // Mengambil data biodata pendaftar
+            const responseBiodata = await fetch("/api/biodata");
+            const dataBiodata = await responseBiodata.json();
+            setBiodata(dataBiodata.data);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
+
+    // Fungsi untuk menampilkan form tambah user
+    const handleTambahUser = () => {
+        // Implementasikan logika untuk menampilkan form tambah user
+    };
+
+    // Fungsi untuk menampilkan form edit user
+    const handleEditUser = (userId) => {
+        // Implementasikan logika untuk menampilkan form edit user
+    };
+
+    // Fungsi untuk menampilkan modal konfirmasi hapus user
+    const handleHapusUser = (userId) => {
+        // Implementasikan logika untuk menampilkan modal konfirmasi hapus user
+    };
+
     return (<>
         {/* Start block */}
         <section className=" antialiased">
@@ -48,31 +93,44 @@ export default function ManajemenUser() {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr className="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                {users.map((user, index) => (
+                                    <tr key={user.id} className="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
 
-                                    <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        1
-                                    </td>
-                                    <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">Roynaldi</td>
-                                    <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">sangjuara@gmail.com</td>
-                                    <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">12 Mei 2001</td>
-                                    <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">2/2023</td>
-                                    <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">Belum ditentukan</td>
-                                    <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">Afirmasi</td>
-                                    <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        <div className="flex items-center space-x-4">
-                                            <button type="button" className="py-2 px-3 flex items-center text-sm font-medium text-center text-white bg-green-700  hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                                                <FaUserEdit />
-                                            </button>
-                                            <button type="button" className="py-2 px-3 flex items-center text-sm font-medium text-center text-gray-900 focus:outline-none bg-white  border border-yellow-200 hover:bg-yellow-200 hover:text-yellow-700 focus:z-10 focus:ring-4 focus:ring-yellow-200 dark:focus:ring-yellow-700 dark:bg-yellow-800 dark:text-yellow-400 dark:border-yellow-600 dark:hover:text-white dark:hover:bg-yellow-700">
-                                                <FaEye />
-                                            </button>
-                                            <button type="button" className="flex items-center text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium  text-sm px-3 py-2 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
-                                                <FaTrashAlt />
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                        <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            {index + 1}
+                                        </td>
+                                        <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.nama_lengkap}</td>
+                                        <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.email}</td>
+                                        <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.tgl_lahir}</td>
+                                        <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"> {/* Tambahkan data gelombang/tahun sesuai kebutuhan */}</td>
+                                        <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"> {/* Tambahkan data tanggal diterima sesuai kebutuhan */}</td>
+                                        <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"> {/* Tambahkan data jalur yang dipilih sesuai kebutuhan */}</td>
+                                        <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            <div className="flex items-center space-x-4">
+                                                <button
+                                                    type="button"
+                                                    className="py-2 px-3 flex items-center text-sm font-medium text-center text-white bg-green-700  hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                                                    onClick={() => handleEditUser(user.id)}
+                                                >
+                                                    <FaUserEdit />
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    className="py-2 px-3 flex items-center text-sm font-medium text-center text-gray-900 focus:outline-none bg-white  border border-yellow-200 hover:bg-yellow-200 hover:text-yellow-700 focus:z-10 focus:ring-4 focus:ring-yellow-200 dark:focus:ring-yellow-700 dark:bg-yellow-800 dark:text-yellow-400 dark:border-yellow-600 dark:hover:text-white dark:hover:bg-yellow-700"
+                                                >
+                                                    <FaEye />
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    className="flex items-center text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium  text-sm px-3 py-2 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
+                                                    onClick={() => handleHapusUser(user.id)}
+                                                >
+                                                    <FaTrashAlt />
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
                     </div>
@@ -122,3 +180,4 @@ export default function ManajemenUser() {
         </section>
     </>);
 }
+export default ManajemenUser
