@@ -5,7 +5,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import ENDPOINT_PPDB from "../../constants";
 import NavbarPanel from "./Navbar";
 import SidebarPanel from "./Sidebar";
-import { delTokenPanel, getTokenPanel } from "../../Components/Reusable";
+import { delTokenPanel, getTokenPanel, rosevelt } from "../../Components/Reusable";
 import { useSwipeable } from 'react-swipeable';
 export default function DashboardPanel() {
     const token = getTokenPanel()
@@ -56,8 +56,8 @@ export default function DashboardPanel() {
             .then(async (res) => {
                 console.log(res)
                 if (res.isConfirmed) {
-                    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-                    await axios.post(ENDPOINT_PPDB + "logout").then(
+                    rosevelt.defaults.headers.common['Authorization'] = `Bearer ${token}`
+                    await rosevelt.post("logout").then(
                         () => {
                             letSwall.fire({
                                 title: "Log Out Berhasil!",
