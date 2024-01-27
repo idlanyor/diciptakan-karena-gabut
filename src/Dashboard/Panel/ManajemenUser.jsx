@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import { FaEye, FaTrashAlt, FaUserEdit } from "react-icons/fa";
-import { rosevelt } from "../../Components/Reusable";
+import { getTokenPanel, rosevelt } from "../../Components/Reusable";
+import { data } from "autoprefixer";
 
 const ManajemenUser = () => {
     // State untuk menyimpan data user
@@ -18,18 +19,20 @@ const ManajemenUser = () => {
     const fetchData = async () => {
         try {
             // Mengambil data user
-            const responseUser = await rosevelt('users');
-            const dataUser = await responseUser.json();
+            rosevelt.defaults.headers.common['Authorization'] = `Bearer ${getTokenPanel()}`
+            const dataUser = await rosevelt.get('panel/user');
+            // const dataUser = await responseUser.json();
             setUsers(dataUser.data);
 
-            // Mengambil data biodata pendaftar
-            const responseBiodata = await fetch("/api/biodata");
-            const dataBiodata = await responseBiodata.json();
-            setBiodata(dataBiodata.data);
+            // // Mengambil data biodata pendaftar
+            // const responseBiodata = await rosevelt.get("/biodata");
+            // // const dataBiodata = await responseBiodata.json();
+            // setBiodata(responseBiodata.data);
         } catch (error) {
             console.error("Error fetching data:", error);
         }
     };
+    console.log(users);
 
     // Fungsi untuk menampilkan form tambah user
     const handleTambahUser = () => {
@@ -93,7 +96,7 @@ const ManajemenUser = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {users.map((user, index) => (
+                                {biodata.map((user, index) => (
                                     <tr key={user.id} className="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
 
                                         <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">

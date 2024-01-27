@@ -3,9 +3,39 @@ import { FaCalendarTimes, FaPencilAlt } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { getTokenPanel, rosevelt } from "../../../Components/Reusable";
 
+
+function Thead() {
+    return (
+        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" className="px-6 py-3">
+                    No
+                </th>
+                <th scope="col" className="px-6 py-3">
+                    Jalur
+                </th>
+                <th scope="col" className="px-6 py-3">
+                    Periode
+                </th>
+                <th scope="col" className="px-6 py-3">
+                    Jadwal
+                </th>
+                <th scope="col" className="px-6 py-3">
+                    Kuota
+                </th>
+                <th scope="col" className="px-6 py-3">
+                    #
+                    <span className="sr-only">Edit</span>
+                </th>
+            </tr>
+        </thead>
+    );
+}
+
+
 export default function JadwalSettings() {
     const [editModal, setEditModal] = useState(false);
-    const [selectedId, setSelectedId] = useState();
+    const [selectedId, setSelectedId] = useState(null);
     useEffect(() => {
         rosevelt.defaults.headers.common['Authorization'] = `Bearer ${getTokenPanel()}`
         rosevelt.get('panel/jadwal').then((res) => {
@@ -60,31 +90,9 @@ export default function JadwalSettings() {
 
                 <div className="relative overflow-x-auto shadow-md ">
                     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                            <tr>
-                                <th scope="col" className="px-6 py-3">
-                                    No
-                                </th>
-                                <th scope="col" className="px-6 py-3">
-                                    Jalur
-                                </th>
-                                <th scope="col" className="px-6 py-3">
-                                    Periode
-                                </th>
-                                <th scope="col" className="px-6 py-3">
-                                    Jadwal
-                                </th>
-                                <th scope="col" className="px-6 py-3">
-                                    Kuota
-                                </th>
-                                <th scope="col" className="px-6 py-3">
-                                    #
-                                    <span className="sr-only">Edit</span>
-                                </th>
-                            </tr>
-                        </thead>
+                        <Thead></Thead>
                         <tbody>
-                            {/* {
+                            {
                                 dummyData.map((d, index) => (
                                     <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -114,7 +122,7 @@ export default function JadwalSettings() {
                                         </td>
                                     </tr>
                                 ))
-                            } */}
+                            }
 
                         </tbody>
                     </table>
