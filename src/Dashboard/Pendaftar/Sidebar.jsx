@@ -2,8 +2,8 @@
 import { FaBullhorn, FaSignOutAlt, FaUpload } from "react-icons/fa";
 import { FaGrip, FaNoteSticky } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-const Sidebar = ({ isDrawerOpen, handleSwipe, logoutHandler }) => {
-  return (<aside {...handleSwipe} className={`fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform ${isDrawerOpen ? 'translate-x-0' : '-translate-x-full'} bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700`} aria-label="Sidenav" id="drawer-navigation">
+const Sidebar = ({ isDrawerOpen, handleSwipe, logoutHandler, menu }) => {
+  return (<aside {...handleSwipe} className={`fixed top-0 left-0 z-10 w-64 h-screen pt-14 transition-transform ${isDrawerOpen ? 'translate-x-0' : '-translate-x-full'} bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700`} aria-label="Sidenav" id="drawer-navigation">
     <div className="overflow-y-auto py-5 px-3 h-full bg-white dark:bg-gray-800">
       <form action="#" method="GET" className="md:hidden mb-2">
         <label htmlFor="sidebar-search" className="sr-only">Search</label>
@@ -17,30 +17,16 @@ const Sidebar = ({ isDrawerOpen, handleSwipe, logoutHandler }) => {
         </div>
       </form>
       <ul className="space-y-4">
-        <li className="border-b border-gray-200 dark:border-gray-700">
-          <Link to={"/dashboard"} className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-            <FaGrip />
-            <span className="ml-3">Dashboard</span>
-          </Link>
-        </li>
-        <li className="border-b border-gray-200 dark:border-gray-700">
-          <Link to={'/dashboard/biodata'} className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-            <FaNoteSticky />
-            <span className="ml-3">Lengkapi Biodata</span>
-          </Link>
-        </li>
-        <li className="border-b border-gray-200 dark:border-gray-700">
-          <Link to={"/dashboard/file-pendaftar"} className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-            <FaUpload />
-            <span className="ml-3">Upload Berkas</span>
-          </Link>
-        </li>
-        <li className="border-b border-gray-200 dark:border-gray-700">
-          <Link to={'/dashboard/pengumuman'} className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-            <FaBullhorn />
-            <span className="ml-3">Pengumuman</span>
-          </Link>
-        </li>
+        {
+          menu.map((d, index) => (
+            <li key={index} className="border-b border-gray-200 dark:border-gray-700">
+              <Link to={d.link} className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <d.icon />
+                <span className="ml-3">{d.judul}</span>
+              </Link>
+            </li>
+          ))
+        }
       </ul>
     </div>
     <div className={`md:hidden absolute bottom-0 left-0 justify-center p-4 space-x-4 w-full lg:flex bg-white dark:bg-gray-800 z-20 ${isDrawerOpen ? 'flex' : 'flex'}`}>

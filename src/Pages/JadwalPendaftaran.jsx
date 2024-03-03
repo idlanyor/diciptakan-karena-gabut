@@ -44,7 +44,7 @@ function JadwalPendaftaran() {
     };
 
     return (
-        <div className="p-8">
+        <div className="p-8 bg-white m-5">
             <h3 className=''>Informasi Jadwal Pendaftaran</h3>
             <div id="accordion-collapse" data-accordion="collapse">
                 {accordionData.map((accordion) => (

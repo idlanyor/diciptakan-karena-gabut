@@ -14,7 +14,7 @@ function RincianBiaya() {
         },
     ]
     return (
-        <div className="grid mt-5 space-y-4 lg:flex lg:justify-evenly lg:items-center lg:h-screen">
+        <div className="bg-white rounded-2xl m-5 grid space-y-4 lg:flex lg:justify-evenly lg:items-center lg:h-screen">
             {
                 data.map((d, index) => (
                     <div key={index} className="w-full place-self-center max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">

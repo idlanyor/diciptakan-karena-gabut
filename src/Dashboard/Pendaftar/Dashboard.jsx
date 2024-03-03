@@ -1,3 +1,4 @@
+import Background from '../../assets/bg.svg'
 import { useEffect, useState } from "react";
 import axios from "axios";
 import SidebarPendaftar from "./Sidebar";
@@ -7,6 +8,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import ENDPOINT_PPDB from "../../constants";
 import { useSwipeable } from "react-swipeable";
 import { delTokenPendaftar, getTokenPendaftar } from "../../Components/Reusable";
+import { menuPendaftar } from './data/menuPendaftar';
 export default function DashboardPendaftar() {
     const token = getTokenPendaftar()
     const navigasi = useNavigate();
@@ -88,13 +90,13 @@ export default function DashboardPendaftar() {
             setDrawerOpen(false)
         }
     })
-    return (<>
-        <NavbarPendaftar toggleDrawer={handleToggleDrawer} />
-        <SidebarPendaftar isDrawerOpen={isDrawerOpen} handleSwipe={handleSwipe} logoutHandler={logoutHandler} />
+    return (<div className='relative'>
+        <NavbarPendaftar toggleDrawer={handleToggleDrawer} menu={menuPendaftar} />
+        <SidebarPendaftar menu={menuPendaftar} isDrawerOpen={isDrawerOpen} handleSwipe={handleSwipe} logoutHandler={logoutHandler} />
         <div {...handleSwipe} {...handleTouch} className="antialiased max-h-full">
             <main className="px-4 md:ml-64 pt-20 pb-5">
                 <Outlet />
             </main>
         </div>
-    </>);
+    </div>);
 }

@@ -5,7 +5,7 @@ import { FaCalendarDays, FaCircleInfo, FaListCheck } from "react-icons/fa6";
 export default function Depan() {
     return (
         <>
-            <section className="bg-bg-purple-200 dark:bg-blue-500 -5">
+            <section className="bg-white rounded-2xl dark:bg-blue-500 m-5">
                 <div className="lg:grid flex text-center flex-col-reverse max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
                     <div className="mr-auto mt-5 place-self-center lg:col-span-7">
                         <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">Portal PPDB </h1>
@@ -26,7 +26,7 @@ export default function Depan() {
                     </div>
                 </div>
             </section>
-            <section>
+            <section className="bg-white m-5 rounded-2xl">
                 <div className="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
                     <div className="max-w-screen-lg mb-8 lg:mb-16">
                         <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Penerimaan Peserta Didik Baru (PPDB) SMP Lebih Mudah</h2>

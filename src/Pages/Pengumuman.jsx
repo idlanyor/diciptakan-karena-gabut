@@ -24,12 +24,12 @@ function Pengumuman() {
         },
     ]
     return (
-        <div className="p-5">
+        <div className="p-5 bg-white m-5 rounded-2xl shadow-lg">
             <h1 className="text-2xl mb-2 font-extrabold  text-slate-900 dark:text-white">Informasi lain terkait Pendaftaran</h1>
             {
                 posts.map((p, index) => (
                     <Link key={index} to={p.link}>
-                        <div className="p-6 mt-5 rounded-lg border border-gray-200  shadow bg-purple-200 dark:bg-gray-800 dark:border-gray-700">
+                        <div className="p-6 mt-5 rounded-lg border border-gray-200  shadow bg-white dark:bg-gray-800 dark:border-gray-700">
                             <a href="#">
                                 <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-blue-500">{p.title}</h5>
                             </a>
