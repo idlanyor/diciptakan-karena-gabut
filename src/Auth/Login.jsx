@@ -1,12 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { FaInfoCircle, FaSignInAlt, FaTimes } from "react-icons/fa";
+import { FaInfoCircle, FaSignInAlt, FaEnvelope, FaLock, FaExclamationCircle, FaUserCircle } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import ENDPOINT_PPDB from "../constants";
 import { getTokenPendaftar, setTokenPendaftar } from "../Components/Reusable";
+
 export default function Login() {
-    const navigasi = useNavigate()
+    const navigasi = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showAlert, setAlert] = useState(true);
@@ -72,63 +73,158 @@ export default function Login() {
         }, 5000);
         return () => { clearTimeout(timer); };
     }, [showAlert]);
-    return (<section >
-        <div className=" flex items-center h-screen justify-center px-6 py-8 md:h-screen lg:py-0">
-
-            <div className="w-full bg-gray-50 shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-                <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                    <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                        Login
-                    </h1>
-                    <div className="p-4 mb-4 text-sm text-primary-800 bg-primary-200 rounded-lg dark:bg-gray-600 dark:text-blue-400" role="alert">
-                        <span className="font-medium">Silahkan login menggunakan Email dan tanggal lahir Anda dengan format <strong>DDMMYYYY</strong></span>
+    return (
+        <section className="min-h-screen flex items-center justify-center px-4 py-8 bg-gradient-to-br from-white via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-indigo-900/20">
+            <div className="w-full max-w-xl">
+                {/* Header */}
+                <div className="text-center mb-8 animate-fade-in">
+                    <div className="inline-flex items-center justify-center w-16 h-16 mb-4 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 text-white shadow-lg">
+                        <FaUserCircle className="text-3xl" />
                     </div>
-                    {validasi.code === 401 && showAlert && (<div id="alert-2" role="alert" className="flex items-center p-4 mb-4 text-red-800 rounded-full  bg-red-100 dark:bg-gray-600 dark:text-red-400">
-                        <FaInfoCircle/>
-                        <span className="sr-only">Info</span>
-                        <div className="ms-3 text-sm font-medium">
-                            {validasi.message}
-                        </div>
-                        <button type="button" onClick={closeAlert} className="ms-auto -mx-1.5 -my-1.5 bg-red-100 text-red-500  focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-600 dark:text-red-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-2" aria-label="Close">
-                            <span className="sr-only">Close</span>
-                            <FaTimes/>
-                        </button>
-                    </div>)}
+                    <h1 className="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent mb-2">
+                        Login PPDB
+                    </h1>
+                    <p className="text-gray-600 dark:text-gray-400">
+                        Masuk ke akun Anda untuk melanjutkan pendaftaran
+                    </p>
+                </div>
 
-                    <form onSubmit={loginHandler} className="space-y-4 md:space-y-6">
-                        <div>
-                            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                            <input onChange={handleEmailChange} type="email" name="email" id="email" className={`bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm  focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500 ${validasi.email ? 'border-red-500' : ''}`} />
-                            {validasi.email && (<span className="text-sm text-red-500">
-                                {validasi.email}
-                            </span>)}
+                {/* Form Card */}
+                <div className="bg-white dark:bg-gray-800/50 backdrop-blur-sm rounded-3xl shadow-2xl border-2 border-gray-100 dark:border-gray-700 p-6 md:p-10 animate-fade-in-up">
+                    {/* Info Box */}
+                    <div className="mb-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl border-2 border-blue-200 dark:border-blue-800">
+                        <div className="flex items-start gap-3">
+                            <FaInfoCircle className="text-blue-600 dark:text-blue-400 text-xl flex-shrink-0 mt-0.5" />
+                            <div>
+                                <p className="text-sm font-medium text-gray-900 dark:text-white">
+                                    Gunakan <strong>Email</strong> dan <strong>Tanggal Lahir</strong> sebagai password
+                                </p>
+                                <p className="text-xs text-gray-600 dark:text-gray-300 mt-1">
+                                    Format password: <strong>DDMMYYYY</strong> (contoh: 15012010)
+                                </p>
+                            </div>
                         </div>
-                        <div>
-                            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                            <input onChange={handlePasswordChange} type="password" name="password" id="password" className={`bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm  focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500 ${validasi.password ? 'border-red-500' : ''}`} />
-                            {validasi.password && (<span className="text-sm text-red-500">
-                                {validasi.password}
-                            </span>)}
-                        </div>
+                    </div>
 
-                        <button type="submit" disabled={isLoading} className="w-fit flex justify-center text-white bg-purple-600 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium  text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                            {isLoading ? (<div role="status" className="flex space-x-2">
-                                <svg aria-hidden="true" className="w-5 text-gray-200 animate-spin dark:text-gray-600 fill-purple-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />
-                                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill" />
+                    {/* Error Alert */}
+                    {validasi.code === 401 && showAlert && (
+                        <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border-2 border-red-200 dark:border-red-800 rounded-xl flex items-start gap-3 animate-fade-in">
+                            <FaExclamationCircle className="text-red-500 dark:text-red-400 text-xl flex-shrink-0 mt-0.5" />
+                            <div className="flex-grow">
+                                <p className="text-sm font-medium text-red-800 dark:text-red-300">
+                                    {validasi.message}
+                                </p>
+                            </div>
+                            <button
+                                type="button"
+                                onClick={closeAlert}
+                                className="text-red-500 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 transition-colors"
+                            >
+                                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
                                 </svg>
-                                <span>Memproses...</span>
-                            </div>) : (<>
-                                <FaSignInAlt />&nbsp;
-                                Masuk
-                            </>)}
+                            </button>
+                        </div>
+                    )}
+
+                    {/* Form */}
+                    <form onSubmit={loginHandler} className="space-y-6">
+                        {/* Email */}
+                        <div>
+                            <label htmlFor="email" className="flex items-center gap-2 mb-2 text-sm font-semibold text-gray-900 dark:text-white">
+                                <FaEnvelope className="text-blue-600 dark:text-blue-400" />
+                                Email
+                            </label>
+                            <div className="relative">
+                                <input
+                                    onChange={handleEmailChange}
+                                    type="email"
+                                    name="email"
+                                    id="email"
+                                    placeholder="nama@email.com"
+                                    className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700/50 border-2 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-all duration-200 focus:outline-none focus:ring-4 ${
+                                        validasi.email
+                                            ? 'border-red-500 focus:border-red-500 focus:ring-red-200 dark:focus:ring-red-800'
+                                            : 'border-gray-200 dark:border-gray-600 focus:border-blue-500 focus:ring-blue-200 dark:focus:ring-blue-800'
+                                    }`}
+                                />
+                            </div>
+                            {validasi.email && (
+                                <p className="mt-2 text-sm text-red-600 dark:text-red-400 flex items-center gap-1">
+                                    <FaExclamationCircle />
+                                    {validasi.email}
+                                </p>
+                            )}
+                        </div>
+
+                        {/* Password */}
+                        <div>
+                            <label htmlFor="password" className="flex items-center gap-2 mb-2 text-sm font-semibold text-gray-900 dark:text-white">
+                                <FaLock className="text-blue-600 dark:text-blue-400" />
+                                Password (Tanggal Lahir)
+                            </label>
+                            <div className="relative">
+                                <input
+                                    onChange={handlePasswordChange}
+                                    type="password"
+                                    name="password"
+                                    id="password"
+                                    placeholder="DDMMYYYY (contoh: 15012010)"
+                                    className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700/50 border-2 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-all duration-200 focus:outline-none focus:ring-4 ${
+                                        validasi.password
+                                            ? 'border-red-500 focus:border-red-500 focus:ring-red-200 dark:focus:ring-red-800'
+                                            : 'border-gray-200 dark:border-gray-600 focus:border-blue-500 focus:ring-blue-200 dark:focus:ring-blue-800'
+                                    }`}
+                                />
+                            </div>
+                            {validasi.password && (
+                                <p className="mt-2 text-sm text-red-600 dark:text-red-400 flex items-center gap-1">
+                                    <FaExclamationCircle />
+                                    {validasi.password}
+                                </p>
+                            )}
+                        </div>
+
+                        {/* Submit Button */}
+                        <button
+                            type="submit"
+                            disabled={isLoading}
+                            className="group w-full flex items-center justify-center gap-2 px-6 py-4 text-base font-semibold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 dark:from-blue-500 dark:to-indigo-500 dark:hover:from-blue-600 dark:hover:to-indigo-600 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                        >
+                            {isLoading ? (
+                                <div className="flex items-center gap-2">
+                                    <svg className="w-5 h-5 animate-spin" viewBox="0 0 24 24" fill="none">
+                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                                    </svg>
+                                    <span>Memproses...</span>
+                                </div>
+                            ) : (
+                                <>
+                                    <FaSignInAlt className="text-lg" />
+                                    Masuk
+                                    <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                                    </svg>
+                                </>
+                            )}
                         </button>
-                        <p className="text-sm font-light text-gray-500 dark:text-white">
-                            Belum mendaftar? <Link to={'/registrasi'} className="font-medium text-purple-600 hover:underline dark:text-blue-500">Daftar Sekarang</Link>
-                        </p>
+
+                        {/* Register Link */}
+                        <div className="text-center pt-4 border-t-2 border-gray-100 dark:border-gray-700">
+                            <p className="text-sm text-gray-600 dark:text-gray-400">
+                                Belum punya akun?{' '}
+                                <Link
+                                    to={'/registrasi'}
+                                    className="font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
+                                >
+                                    Daftar Sekarang
+                                </Link>
+                            </p>
+                        </div>
                     </form>
                 </div>
             </div>
-        </div>
-    </section>);
+        </section>
+    );
 }

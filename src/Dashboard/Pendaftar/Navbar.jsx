@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSwipeable } from "react-swipeable";
 import { Avatar, Dropdown, Navbar } from 'flowbite-react';
+import ThemeToggle from '../../Components/ThemeToggle';
 const NavbarPendaftar = ({ toggleDrawer, menu }) => {
     const [isMobileNav, setIsMobileNav] = useState(false);
     const handleSwipe = useSwipeable({
@@ -31,7 +32,9 @@ const NavbarPendaftar = ({ toggleDrawer, menu }) => {
                                 <img src="/vite.svg" className="mr-3 h-8" alt="PPDB Online" />
                                 <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">PPDB SMP N 48 Rosevelt</span>
                             </Link>
-                            <Dropdown
+                            <div className="flex items-center gap-2">
+                                <ThemeToggle />
+                                <Dropdown
                                 arrowIcon={false}
                                 inline
                                 label={
@@ -48,6 +51,7 @@ const NavbarPendaftar = ({ toggleDrawer, menu }) => {
                                 <Dropdown.Divider />
                                 <Dropdown.Item>Sign out</Dropdown.Item>
                             </Dropdown>
+                            </div>
                         </div>
                     </Navbar>
 
@@ -58,7 +62,8 @@ const NavbarPendaftar = ({ toggleDrawer, menu }) => {
                             <img src="/vite.svg" className="mr-3 h-6 sm:h-9" alt="PPDB Logo" />
                             <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">PPDB</span>
                         </Navbar.Brand>
-                        <div className="flex md:order-2">
+                        <div className="flex md:order-2 gap-2 items-center">
+                            <ThemeToggle />
                             <Dropdown
                                 arrowIcon={false}
                                 inline

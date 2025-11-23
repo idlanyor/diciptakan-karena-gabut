@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
+import ThemeToggle from "../../Components/ThemeToggle";
 const NavbarPanel = ({ toggleDrawer }) => {
     // user drawer
     return (
@@ -19,6 +20,9 @@ const NavbarPanel = ({ toggleDrawer }) => {
                         <img src="/vite.svg" className="mr-3 h-8" alt="PPDB Online" />
                         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">PPDB</span>
                     </Link>
+                </div>
+                <div className="flex items-center">
+                    <ThemeToggle />
                 </div>
             </div>
         </nav>

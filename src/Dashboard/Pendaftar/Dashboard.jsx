@@ -90,10 +90,15 @@ export default function DashboardPendaftar() {
             setDrawerOpen(false)
         }
     })
-    return (<div className='relative'>
+    return (<div className='relative min-h-screen'>
+        {/* Background Pattern */}
+        <div className="fixed inset-0 bg-gradient-to-br from-gray-50 via-purple-50/30 to-blue-50/30 dark:from-gray-900 dark:via-purple-900/10 dark:to-blue-900/10">
+            <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10"></div>
+        </div>
+
         <NavbarPendaftar toggleDrawer={handleToggleDrawer} menu={menuPendaftar} />
         <SidebarPendaftar menu={menuPendaftar} isDrawerOpen={isDrawerOpen} handleSwipe={handleSwipe} logoutHandler={logoutHandler} />
-        <div {...handleSwipe} {...handleTouch} className="antialiased max-h-full">
+        <div {...handleSwipe} {...handleTouch} className="antialiased max-h-full relative z-0">
             <main className="px-4 md:ml-64 pt-20 pb-5">
                 <Outlet />
             </main>
